@@ -1,8 +1,14 @@
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
 const api = axios.create({
-  baseURL: 'http://localhost:8080/api',
+  baseURL: `${API_URL}/api`,
 });
+
+// const api = axios.create({
+//   baseURL: 'http://localhost:8080/api',
+// });
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
@@ -26,8 +32,10 @@ api.interceptors.response.use(
         if (!refreshToken) throw new Error('No refresh token found');
         
         // Use a clean axios instance to avoid interceptor loops
-        const { data } = await axios.post('http://localhost:8080/api/auth/refresh-token', { refreshToken });
+        // const { data } = await axios.post('http://localhost:8080/api/auth/refresh-token', { refreshToken });
 
+
+        const { data } = await axios.post(`${API_URL}/api/auth/refresh-token`, { refreshToken });
         const newToken = data.accessToken;
         const newRefreshToken = data.refreshToken;
         
