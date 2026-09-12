@@ -136,11 +136,12 @@ public class SecurityConfig {
 
             var config = new org.springframework.web.cors.CorsConfiguration();
 
-            config.setAllowedOriginPatterns(java.util.List.of(
-                    "http://localhost:5173",
-                    "http://localhost:5174",
-                    "https://*.vercel.app"
-            ));
+          config.setAllowedOriginPatterns(java.util.List.of(
+        "http://localhost:5173",
+        "http://localhost:5174",
+        "https://frontend-peach-kappa-kooyscqiqw.vercel.app",
+        "https://*.vercel.app"
+));
 
             config.setAllowedMethods(java.util.List.of(
                     "GET",
